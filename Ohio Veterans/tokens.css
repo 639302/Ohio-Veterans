@@ -1,0 +1,329 @@
+/*
+  Ohio Veterans — Design Tokens
+  Two-layer system:
+    1. Brand layer  — Ohio-specific colors (from Ohio Brand Guide v1.9)
+    2. Utility layer — fixed, accessibility-critical tokens (neutral scale,
+       status colors, links, focus ring). These do NOT change with brand
+       and are tuned to meet WCAG AA contrast on their documented surfaces.
+  Toggle dark mode by setting [data-mode="dark"] on a root element (e.g. <html>).
+*/
+
+:root {
+  /* ---------------------------------------------------------------- */
+  /* Typography — font families & weights                             */
+  /* ---------------------------------------------------------------- */
+  --font-family-primary: 'Source Sans 3', system-ui, sans-serif;
+  --font-family-secondary: 'Source Serif 4', Georgia, serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* ---------------------------------------------------------------- */
+  /* Breakpoints — proposed default (only md/xl confirmed by source)  */
+  /* ---------------------------------------------------------------- */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;  /* confirmed — = --layout-padding-step */
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px; /* confirmed — = --layout-content-max-width */
+  --breakpoint-2xl: 1536px;
+
+  /* ---------------------------------------------------------------- */
+  /* Brand — Primary Palette                                          */
+  /* ---------------------------------------------------------------- */
+  --color-brand-buckeye-blue: #0E3F75;
+  --color-brand-cardinal-red: #C12637;
+  --color-brand-white: #FFFFFF;
+
+  /* ---------------------------------------------------------------- */
+  /* Brand — Secondary Palette                                        */
+  /* ---------------------------------------------------------------- */
+  --color-brand-earth-brown: #8A5E32;
+  --color-brand-tech-blue: #0098D3;
+  --color-brand-quarry-blue: #69C2C6;
+  --color-brand-black: #000000;
+  --color-brand-circleville-orange: #EBA70E;
+  --color-brand-solar-yellow: #F3DF89;
+  --color-brand-monumental-gray: #B0B3AF;
+  --color-brand-appalachian-green: #729364;
+  --color-brand-pawpaw-green: #BBD36F;
+
+  /* ---------------------------------------------------------------- */
+  /* Utility — Neutral Scale (Light Mode)                             */
+  /* ---------------------------------------------------------------- */
+  --color-neutral-1: #fcfcfc;   /* Page — body background */
+  --color-neutral-2: #f9f9f9;   /* Surface — cards, sidebars, panels */
+  --color-neutral-3: #f0f0f0;   /* Element — ghost button, list item default */
+  --color-neutral-4: #e8e8e8;   /* Element hovered */
+  --color-neutral-5: #e0e0e0;   /* Element pressed — selected item */
+  --color-neutral-6: #b8b8b8;   /* Separator — dividers, card borders */
+  --color-neutral-7: #878787;   /* Border — input borders, button outlines */
+  --color-neutral-8: #737373;   /* Border hovered — emphasized outlines */
+  --color-neutral-9: #606060;   /* Solid (anchor) — filled elements */
+  --color-neutral-10: #484848;  /* Solid hovered */
+  --color-neutral-11: #303030;  /* Text muted — secondary text, captions */
+  --color-neutral-12: #1a1a1a;  /* Text — body, headings */
+
+  /* ---------------------------------------------------------------- */
+  /* Brand — Primary Scale (Buckeye Blue anchor, 12-step)             */
+  /* Same structure as the neutral scale. Step 9 = brand hex exactly. */
+  /* Contrast of anchor (#0e3f75) vs. white = 10.57:1.                */
+  /* ---------------------------------------------------------------- */
+  --color-primary-1: #f6fbff;   /* Page */
+  --color-primary-2: #eef4fc;   /* Surface */
+  --color-primary-3: #e2ecfa;   /* Element */
+  --color-primary-4: #d6e4f7;   /* Element hovered */
+  --color-primary-5: #c9dbf2;   /* Element pressed */
+  --color-primary-6: #b0c6e3;   /* Separator */
+  --color-primary-7: #95b0d3;   /* Border */
+  --color-primary-8: #799bc6;   /* Border hovered */
+  --color-primary-9: #0e3f75;   /* Solid (anchor) — = --color-brand-buckeye-blue */
+  --color-primary-10: #00295b; /* Solid hovered */
+  --color-primary-11: #355780; /* Text muted */
+  --color-primary-12: #162f4d; /* Text */
+
+  /* ---------------------------------------------------------------- */
+  /* Utility — Status Colors (fixed across all themes)                */
+  /* ---------------------------------------------------------------- */
+  --color-utility-success-muted: #c6f3c6;      /* Surface background */
+  --color-utility-success-emphasis: #0e580e;   /* Text, borders, icons */
+  --color-utility-error-muted: #f3ac99;        /* Surface background */
+  --color-utility-error-emphasis: #aa010e;     /* Text, borders, icons */
+  --color-utility-caution-muted: #faf3d1;      /* Surface background */
+  --color-utility-caution-emphasis: #936f38;   /* Text, borders, icons (USWDS warning-darker) */
+
+  /* Informational — semantic layer, references neutral palette (auto-swaps in dark mode) */
+  --color-utility-informational-surface: var(--color-neutral-3);
+  --color-utility-informational-stroke: var(--color-neutral-6);
+  --color-utility-informational-text: var(--color-neutral-11);
+
+  /* On-fill & notification */
+  --color-utility-on-fill: #ffffff;         /* White text/icons on emphasis fills */
+  --color-utility-notification: #aa010e;    /* Badge/indicator fill */
+
+  /* Placeholder text — NOT part of the neutral scale; tuned for 4.5:1 on all neutral surfaces */
+  --color-text-placeholder: #6d6d6d;
+
+  /* Links — USWDS-aligned, structural (not brand-dependent), meets WCAG AA */
+  --color-utility-link: #005ea2;         /* 4.54:1 on white */
+  --color-utility-link-hover: #0b4778;   /* 8.18:1 on white */
+  --color-utility-link-visited: #54278f; /* 7.28:1 on white */
+
+  /* ---------------------------------------------------------------- */
+  /* Focus Ring — structural, non-negotiable a11y primitive           */
+  /* Never overridden by brand sheets. Satisfies WCAG 2.2 SC 2.4.11   */
+  /* (Focus Appearance) and SC 1.4.11 (Non-text Contrast),            */
+  /* Section 508 / ADA Title II.                                      */
+  /* ---------------------------------------------------------------- */
+  --focus-ring-width: 2px;          /* WCAG 2.2 SC 2.4.11 minimum, applied as outline-width */
+  --focus-ring-style: solid;        /* Maximum visibility across backgrounds */
+  --focus-ring-color: #386CF7;      /* 3:1 contrast against white and light surfaces */
+  --focus-ring-offset: 2px;         /* External ring offset — buttons, links, checkboxes, radios */
+  --focus-ring-inset-offset: -2px;  /* Inset offset for bordered elements — text field, select */
+
+  /* ---------------------------------------------------------------- */
+  /* Elevation — shadow scale, structural (does not change per theme) */
+  /* ---------------------------------------------------------------- */
+  --elevation-none: none;
+  --elevation-sm: 0 1px 3px 1px rgba(0,0,0,0.15), 0 1px 2px 0 rgba(0,0,0,0.30);  /* Cards at rest */
+  --elevation-md: 0 2px 6px 2px rgba(0,0,0,0.15), 0 1px 2px 0 rgba(0,0,0,0.30); /* Dropdowns, popovers */
+  --elevation-lg: 0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px 0 rgba(0,0,0,0.30); /* Modals, drawers */
+  --elevation-xl: 0 6px 10px 4px rgba(0,0,0,0.15), 0 2px 3px 0 rgba(0,0,0,0.30); /* Top-level overlays, dialogs */
+
+  /* ---------------------------------------------------------------- */
+  /* Radius — corner curvature, structural (does not change per theme)*/
+  /* ---------------------------------------------------------------- */
+  --radius-none: 0rem;   /* 0px */
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius-md: 0.5rem;   /* 8px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-full: 1000px;
+
+  /* ---------------------------------------------------------------- */
+  /* Spacing — gaps, margins, padding between elements                */
+  /* ---------------------------------------------------------------- */
+  --spacing-0: 0rem;        /* 0px */
+  --spacing-px: 0.0625rem;  /* 1px */
+  --spacing-xs1: 0.125rem;  /* 2px */
+  --spacing-xs0: 0.1875rem; /* 3px */
+  --spacing-xs2: 0.25rem;   /* 4px */
+  --spacing-sm1: 0.5rem;    /* 8px */
+  --spacing-sm2: 0.75rem;   /* 12px */
+  --spacing-md1: 1rem;      /* 16px */
+  --spacing-md2: 1.25rem;   /* 20px */
+  --spacing-lg1: 1.5rem;    /* 24px */
+  --spacing-lg-mid: 1.75rem;/* 28px */
+  --spacing-lg2: 2rem;      /* 32px */
+  --spacing-xl1: 2.5rem;    /* 40px */
+  --spacing-xl2: 3rem;      /* 48px */
+  --spacing-xl3: 3.5rem;    /* 56px */
+  --spacing-xxl1: 4rem;     /* 64px */
+  --spacing-xxl2: 4.5rem;   /* 72px */
+  --spacing-xxl3: 6rem;     /* 96px */
+  --spacing-xxl4: 8rem;     /* 128px */
+
+  /* ---------------------------------------------------------------- */
+  /* Size — dimensions of elements (icons, controls, touch targets,   */
+  /* avatars). Mirrors spacing scale where values overlap; component- */
+  /* specific dimensions stay at the component level, not here.      */
+  /* ---------------------------------------------------------------- */
+  --size-0: 0px;
+  --size-px: 1px;         /* Borders, hairlines */
+  --size-xs1: 2px;
+  --size-xs0: 3px;        /* Small details */
+  --size-xs2: 4px;
+  --size-sm0: 6px;        /* Small elements */
+  --size-sm1: 8px;        /* Radio dot, small icons */
+  --size-sm2: 12px;       /* Small icons, indicators */
+  --size-md1: 16px;       /* Icons, checkbox indicator */
+  --size-md2: 20px;       /* Toggle thumb */
+  --size-lg1: 24px;       /* Icons, touch areas */
+  --size-lg-28: 28px;     /* Accordion/grid indent */
+  --size-lg2: 32px;       /* Desktop touch target */
+  --size-xl1: 40px;       /* Large controls */
+  --size-xl-touch: 44px;  /* WCAG mobile touch target minimum */
+  --size-xl2: 48px;       /* Toggle width, controls */
+  --size-xl3: 56px;       /* Larger controls */
+  --size-xxl1: 64px;      /* Avatars */
+  --size-xxl2: 80px;      /* Large avatars */
+  --size-xxl3: 96px;      /* Extra large avatars */
+  --size-xxl4: 128px;     /* Hero elements */
+
+  /* Icon sizes — matches @mms/design-system's own token scale so DS
+     components (e.g. mms-button's icon-only sizing) resolve correctly. */
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-xl: 32px;
+
+  /* ---------------------------------------------------------------- */
+  /* Layout — content container behavior, structural                  */
+  /* ---------------------------------------------------------------- */
+  --layout-content-max-width: 1280px;       /* Content stops growing past this width */
+  --layout-inline-padding-compact: 16px;    /* Horizontal padding below the padding step */
+  --layout-inline-padding-default: 24px;    /* Horizontal padding at/above the padding step */
+  --layout-padding-step: 768px;             /* Viewport width where padding transitions compact -> default */
+  --layout-gap-tight: var(--spacing-sm1);   /* 8px — chips, icon+label pairs, inline form controls */
+  --layout-gap-default: var(--spacing-md1); /* 16px — list items, form fields, nav items */
+  --layout-gap-loose: var(--spacing-lg1);   /* 24px — cards, larger composite groups */
+  --layout-gap-comfortable: var(--spacing-lg2); /* 32px — major composite blocks, card-grid items */
+}
+
+/* ====================================================================== */
+/* Dark Mode                                                              */
+/* ====================================================================== */
+[data-mode="dark"] {
+  --color-neutral-1: #060606;
+  --color-neutral-2: #151515;
+  --color-neutral-3: #191919;
+  --color-neutral-4: #1d1d1d;
+  --color-neutral-5: #262626;
+  --color-neutral-6: #444444;
+  --color-neutral-7: #636363;
+  --color-neutral-8: #7d7d7d;
+  --color-neutral-9: #979797;
+  --color-neutral-10: #b0b0b0;
+  --color-neutral-11: #cacaca;
+  --color-neutral-12: #e3e3e3;
+
+  --color-primary-1: #03060c;
+  --color-primary-2: #0f151d;
+  --color-primary-3: #0f1a27;
+  --color-primary-4: #0f1e30;
+  --color-primary-5: #15273e;
+  --color-primary-6: #182f4b;
+  --color-primary-7: #264162;
+  --color-primary-8: #33547d;
+  --color-primary-9: #27568e;   /* Solid (anchor) — brighter than light-mode #0e3f75 for dark-bg contrast */
+  --color-primary-10: #416ea4; /* Solid hovered */
+  --color-primary-11: #8cb1e0; /* Text muted */
+  --color-primary-12: #c2e1ff; /* Text */
+
+  --color-text-placeholder: #8c8c8c; /* 4.5:1 on #262626 */
+
+  --color-utility-link: #58b4ff;         /* 7.5:1 on #060606 */
+  --color-utility-link-hover: #a9d6ff;   /* 11.2:1 on #060606 */
+  --color-utility-link-visited: #c9b6e4; /* 8.9:1 on #060606 */
+}
+
+/* ====================================================================== */
+/* Common Usage Reference                                                 */
+/* ====================================================================== */
+/*
+body {
+  background: var(--color-neutral-1);
+  color: var(--color-neutral-12);
+}
+
+.card {
+  background: var(--color-neutral-2);
+  border: 1px solid var(--color-neutral-6);
+}
+
+.list-item:hover {
+  background: var(--color-neutral-4);
+}
+
+.input {
+  border: 1px solid var(--color-neutral-7);
+}
+.input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.alert-success {
+  background: var(--color-utility-success-muted);
+  border: 1px solid var(--color-utility-success-emphasis);
+  color: var(--color-utility-success-emphasis);
+}
+
+.error-text {
+  color: var(--color-utility-error-emphasis);
+}
+
+.banner-caution {
+  background: var(--color-utility-caution-muted);
+  border-left: 4px solid var(--color-utility-caution-emphasis);
+}
+
+a { color: var(--color-utility-link); }
+a:hover { color: var(--color-utility-link-hover); }
+a:visited { color: var(--color-utility-link-visited); }
+
+.tooltip-info {
+  background: var(--color-utility-informational-surface);
+  border: 1px solid var(--color-utility-informational-stroke);
+  color: var(--color-utility-informational-text);
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.text-field:focus-visible {
+  outline: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+  outline-offset: var(--focus-ring-inset-offset);
+}
+
+.layout-container {
+  max-width: var(--layout-content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--layout-inline-padding-compact);
+}
+@media (min-width: 768px) {
+  .layout-container {
+    padding-inline: var(--layout-inline-padding-default);
+  }
+}
+
+.card {
+  border-radius: var(--radius-md);
+  box-shadow: var(--elevation-sm);
+  padding: var(--spacing-lg1);
+}
+.modal {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-lg);
+}
+*/
