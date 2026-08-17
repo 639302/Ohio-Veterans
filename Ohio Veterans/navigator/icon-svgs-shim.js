@@ -6,6 +6,6 @@
 // the import map below redirects that resolved URL to this shim, which
 // fetches the same file as data instead of as a module and re-exports it
 // as the default export the component expects.
-const res = await fetch('/node_modules/@mms/design-system/dist/icons/icon-svgs.json');
+const res = await fetch(new URL('../../node_modules/@mms/design-system/dist/icons/icon-svgs.json', import.meta.url));
 const data = await res.json();
 export default data;
