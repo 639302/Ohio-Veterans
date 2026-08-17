@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="uss-oh-dvs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Navigator | Ohio Department of Veterans Services</title>
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/styles/tokens-primitives.css">
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/styles/tokens-structural.css">
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/themes/uss-oh-dvs.css">
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/themes/uss-oh-dvs-dark.css">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "lit": "../../node_modules/lit/index.js",
+    "lit/": "../../node_modules/lit/",
+    "lit-html": "../../node_modules/lit-html/lit-html.js",
+    "lit-html/": "../../node_modules/lit-html/",
+    "lit-element": "../../node_modules/lit-element/index.js",
+    "lit-element/": "../../node_modules/lit-element/",
+    "@lit/reactive-element": "../../node_modules/@lit/reactive-element/reactive-element.js",
+    "@lit/reactive-element/": "../../node_modules/@lit/reactive-element/",
+    "@lit-labs/ssr-dom-shim": "../../node_modules/@lit-labs/ssr-dom-shim/index.js",
+    "@lit-labs/ssr-dom-shim/": "../../node_modules/@lit-labs/ssr-dom-shim/",
+    "@mms/design-system/components/mms-button": "../../node_modules/@mms/design-system/dist/components/button/mms-button.component.js",
+    "@mms/design-system/components/mms-checkbox": "../../node_modules/@mms/design-system/dist/components/checkbox/mms-checkbox.component.js",
+    "@mms/design-system/components/mms-checkbox-group": "../../node_modules/@mms/design-system/dist/components/checkbox-group/mms-checkbox-group.component.js",
+    "@mms/design-system/components/mms-icon": "../../node_modules/@mms/design-system/dist/components/icon/mms-icon.component.js",
+    "@mms/design-system/components/mms-link": "../../node_modules/@mms/design-system/dist/components/link/mms-link.component.js",
+    "@mms/design-system/components/mms-radio": "../../node_modules/@mms/design-system/dist/components/radio/mms-radio.component.js",
+    "/node_modules/@mms/design-system/dist/icons/icon-svgs.json": "icon-svgs-shim.js"
+  }
+}
+</script>
+<script type="module">
+  import '@mms/design-system/components/mms-button';
+  import '@mms/design-system/components/mms-icon';
+</script>
+</head>
+<body>
+<div class="gov-banner">
+  <button type="button" class="gov-banner__toggle" id="gov-banner-toggle" aria-expanded="false" aria-controls="gov-banner-panel">
+    <span>An official State of Ohio site.</span>
+    <span class="gov-banner__toggle-label">Here's how you know <mms-icon name="caret-down" size="sm"></mms-icon></span>
+  </button>
+  <div class="gov-banner__panel" id="gov-banner-panel" hidden>
+    <div class="gov-banner__item">
+      <mms-icon name="flag" size="lg"></mms-icon>
+      <div><strong>Official websites use Ohio.gov</strong><p>An Ohio.gov website belongs to an official government organization in the State of Ohio.</p></div>
+    </div>
+    <div class="gov-banner__item">
+      <mms-icon name="lock" size="lg"></mms-icon>
+      <div><strong>Secure .gov websites use HTTPS</strong><p>A lock or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.</p></div>
+    </div>
+    <div class="gov-banner__item">
+      <mms-icon name="shield-check" size="lg"></mms-icon>
+      <div><strong>Trusted applications are secured by OHID</strong><p>When you log in with OHID, your privacy, data, and personal information are protected by federal and state digital security standards.</p></div>
+    </div>
+  </div>
+</div>
+<header class="nav-header">
+  <a href="index.html" class="nav-header__brand">
+    <img src="assets/odvs-logo-horiz-for-taleo.webp" alt="Ohio Department of Veterans Services" class="nav-header__logo">
+    <span class="nav-header__title">The Navigator</span>
+  </a>
+  <mms-button id="nav-menu-toggle" variant="ghost" color-scheme="primary" icon-only left-icon="list" label="Menu" size="lg" aria-expanded="false" aria-controls="nav-collapsible" aria-haspopup="true"></mms-button>
+  <div class="nav-header__collapsible" id="nav-collapsible">
+    <nav class="nav-header__nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="result.html">Your Pathway</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="nav-header__account">
+      <button type="button" class="account-trigger" id="nav-account-button" aria-expanded="false" aria-haspopup="true" aria-label="Account menu">
+        <span class="account-avatar" id="account-avatar" aria-hidden="true"></span>
+        <mms-icon name="caret-down" size="sm"></mms-icon>
+      </button>
+      <div class="account-menu" id="account-menu" hidden></div>
+    </div>
+  </div>
+</header>
+
+<main class="layout-container">
+  <div class="landing-layout">
+    <div class="landing-content">
+      <div class="landing-hero">
+        <h1>Find the right benefits, services, and support in Ohio.</h1>
+        <p>Helping veterans, service members, families, caregivers, students, and job seekers. Share the topic you are interested in learning about today. A few easy questions will help us create your personalized pathway to services across Ohio.</p>
+      </div>
+
+      <div class="landing-form" id="landing-form">
+        <label class="visually-hidden" for="landing-text-input">Tell us what you need</label>
+        <div class="landing-form__row">
+          <input
+            type="text"
+            id="landing-text-input"
+            class="text-input"
+            placeholder="For example: 'I need help finding a job'"
+            autocomplete="off"
+          >
+          <mms-button
+            id="landing-submit"
+            label="Get Started"
+            variant="primary"
+            color-scheme="primary"
+            size="lg"
+          ></mms-button>
+        </div>
+      </div>
+
+      <p class="landing-divider">or choose a topic</p>
+
+      <div class="topic-pill-row" id="category-grid" role="list"></div>
+    </div>
+
+    <div class="landing-image" aria-hidden="true">
+      <img src="assets/AdobeStock_617951689.jpeg" alt="" class="landing-image__img">
+    </div>
+  </div>
+</main>
+
+<script type="module" src="nav.js"></script>
+<script type="module" src="landing.js"></script>
+</body>
+</html>

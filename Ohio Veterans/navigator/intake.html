@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="uss-oh-dvs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Navigator | Ohio Department of Veterans Services</title>
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/styles/tokens-primitives.css">
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/styles/tokens-structural.css">
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/themes/uss-oh-dvs.css">
+<link rel="stylesheet" href="../../node_modules/@mms/design-system/dist/themes/uss-oh-dvs-dark.css">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "lit": "../../node_modules/lit/index.js",
+    "lit/": "../../node_modules/lit/",
+    "lit-html": "../../node_modules/lit-html/lit-html.js",
+    "lit-html/": "../../node_modules/lit-html/",
+    "lit-element": "../../node_modules/lit-element/index.js",
+    "lit-element/": "../../node_modules/lit-element/",
+    "@lit/reactive-element": "../../node_modules/@lit/reactive-element/reactive-element.js",
+    "@lit/reactive-element/": "../../node_modules/@lit/reactive-element/",
+    "@lit-labs/ssr-dom-shim": "../../node_modules/@lit-labs/ssr-dom-shim/index.js",
+    "@lit-labs/ssr-dom-shim/": "../../node_modules/@lit-labs/ssr-dom-shim/",
+    "@mms/design-system/components/mms-button": "../../node_modules/@mms/design-system/dist/components/button/mms-button.component.js",
+    "@mms/design-system/components/mms-radio": "../../node_modules/@mms/design-system/dist/components/radio/mms-radio.component.js",
+    "@mms/design-system/components/mms-checkbox": "../../node_modules/@mms/design-system/dist/components/checkbox/mms-checkbox.component.js",
+    "@mms/design-system/components/mms-checkbox-group": "../../node_modules/@mms/design-system/dist/components/checkbox-group/mms-checkbox-group.component.js",
+    "@mms/design-system/components/mms-select": "../../node_modules/@mms/design-system/dist/components/select/mms-select.component.js",
+    "@mms/design-system/components/mms-icon": "../../node_modules/@mms/design-system/dist/components/icon/mms-icon.component.js",
+    "/node_modules/@mms/design-system/dist/icons/icon-svgs.json": "icon-svgs-shim.js"
+  }
+}
+</script>
+<script type="module">
+  import '@mms/design-system/components/mms-button';
+  import '@mms/design-system/components/mms-radio';
+  import '@mms/design-system/components/mms-checkbox';
+  import '@mms/design-system/components/mms-checkbox-group';
+  import '@mms/design-system/components/mms-select';
+  import '@mms/design-system/components/mms-icon';
+</script>
+</head>
+<body>
+<div class="gov-banner">
+  <button type="button" class="gov-banner__toggle" id="gov-banner-toggle" aria-expanded="false" aria-controls="gov-banner-panel">
+    <span>An official State of Ohio site.</span>
+    <span class="gov-banner__toggle-label">Here's how you know <mms-icon name="caret-down" size="sm"></mms-icon></span>
+  </button>
+  <div class="gov-banner__panel" id="gov-banner-panel" hidden>
+    <div class="gov-banner__item">
+      <mms-icon name="flag" size="lg"></mms-icon>
+      <div><strong>Official websites use Ohio.gov</strong><p>An Ohio.gov website belongs to an official government organization in the State of Ohio.</p></div>
+    </div>
+    <div class="gov-banner__item">
+      <mms-icon name="lock" size="lg"></mms-icon>
+      <div><strong>Secure .gov websites use HTTPS</strong><p>A lock or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.</p></div>
+    </div>
+    <div class="gov-banner__item">
+      <mms-icon name="shield-check" size="lg"></mms-icon>
+      <div><strong>Trusted applications are secured by OHID</strong><p>When you log in with OHID, your privacy, data, and personal information are protected by federal and state digital security standards.</p></div>
+    </div>
+  </div>
+</div>
+<header class="nav-header">
+  <a href="index.html" class="nav-header__brand">
+    <img src="assets/odvs-logo-horiz-for-taleo.webp" alt="Ohio Department of Veterans Services" class="nav-header__logo">
+    <span class="nav-header__title">The Navigator</span>
+  </a>
+  <mms-button id="nav-menu-toggle" variant="ghost" color-scheme="primary" icon-only left-icon="list" label="Menu" size="lg" aria-expanded="false" aria-controls="nav-collapsible" aria-haspopup="true"></mms-button>
+  <div class="nav-header__collapsible" id="nav-collapsible">
+    <nav class="nav-header__nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="result.html">Your Pathway</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="nav-header__account">
+      <button type="button" class="account-trigger" id="nav-account-button" aria-expanded="false" aria-haspopup="true" aria-label="Account menu">
+        <span class="account-avatar" id="account-avatar" aria-hidden="true"></span>
+        <mms-icon name="caret-down" size="sm"></mms-icon>
+      </button>
+      <div class="account-menu" id="account-menu" hidden></div>
+    </div>
+  </div>
+</header>
+
+<main class="layout-container">
+  <div class="chat-shell">
+    <div class="chat-shell__toolbar">
+      <div class="progress-indicator" id="progress-indicator">
+        <p class="progress-indicator__label" id="progress-label" aria-live="polite"></p>
+        <div class="progress-indicator__track" role="progressbar" id="progress-track" aria-labelledby="progress-label">
+          <div class="progress-indicator__fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+      <mms-button id="back-button" label="Back" variant="ghost" color-scheme="primary" size="md" left-icon="arrow-left"></mms-button>
+    </div>
+
+    <div class="chat-card">
+      <div class="chat-transcript" id="chat-transcript" role="log" aria-live="polite"></div>
+
+      <div class="chat-quick-replies" id="chat-quick-replies"></div>
+
+      <div class="chat-input-row">
+        <label class="visually-hidden" for="chat-text-input">Type your answer</label>
+        <input type="text" id="chat-text-input" class="text-input" placeholder="Type your answer, or tap an option above" autocomplete="off">
+        <mms-button id="chat-send-button" label="Send" icon-only left-icon="paper-plane-right" variant="primary" color-scheme="primary" size="lg"></mms-button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="nav.js"></script>
+<script type="module" src="intake.js"></script>
+</body>
+</html>
